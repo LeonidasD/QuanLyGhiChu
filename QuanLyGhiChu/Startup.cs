@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using QuanLyGhiChu.Models;
 
 namespace QuanLyGhiChu
 {
@@ -31,6 +33,9 @@ namespace QuanLyGhiChu
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddDbContext<QuanLyGhiChuContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("QuanLyGhiChu"))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +53,6 @@ namespace QuanLyGhiChu
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSpa(spa =>
             {
