@@ -29,7 +29,7 @@ import { HttpClient } from 'selenium-webdriver/http';
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: '**', redirectTo: 'home' }
+      { path: '**', redirectTo: 'home' },
     ])
   ],
   providers: [{ provide: 'BASE_URL', useFactory: getBaseUrl }],

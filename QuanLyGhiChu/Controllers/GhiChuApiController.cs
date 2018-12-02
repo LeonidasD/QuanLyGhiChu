@@ -64,7 +64,7 @@ namespace QuanLyGhiChu.Controllers
 
         [Route("create")]
         [HttpPost]
-        public async Task<IActionResult> Create(string title, string context)
+        public async Task<IActionResult> Create([FromBody] Ghichu gc)
         {
             string token = Guid.NewGuid().ToString().Replace("-", "");
             string hashCode = token.Substring(0, 10);
@@ -74,8 +74,8 @@ namespace QuanLyGhiChu.Controllers
             {
                 HashCode = hashCode,
                 Token = token,
-                Title = title,
-                Context = context,
+                Title = gc.Title,
+                Context = gc.Context,
                 TimeCreated = dt,
                 TimeUpdated = null,
                 HienAn = 1

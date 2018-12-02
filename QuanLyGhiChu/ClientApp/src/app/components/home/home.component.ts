@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpParams, HttpClient } from '@angular/common/http';
+import { Http} from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'home',
@@ -9,26 +10,40 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 })
 
 export class HomeComponent {
-  httpClient: HttpClient;
+  http: Http;
+  router: Router;
+  noteURL: string;
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseurl: string) {
-      this.httpClient = http;
-    }
 
-    public postCreateNote(f: NgForm) {
-      this.httpClient.post("/api/ghichu/create",
-        {
-          "name": "Customer004",
-          "email": "customer004@email.com",
-          "tel": "0000252525"
-        })
+  constructor(http: Http, router: Router) {
+      this.http = http;
+      this.router = router;
+  }
+
+  public postCreateNote(f: NgForm) {
+    //this.note.context = f.control.get('context').value;
+    this.http.post("/api/ghichu/create", f.value)
         .subscribe(
           data => {
-            console.log("POST Request is successful ", data);
+            if (data.status === 200) {
+              console.log(data.text());
+              this.noteURL = document.getElementsByTagName('base')[0].href + data.json()['code'];
+              let alert_string = "Tiêu đề ghi chú: " + f.controls["title"].value
+                + "\nID ghi chú: " + data.json()['code']
+                + "\nHãy vào đường dẫn chứa ID để chỉnh sửa ghi chú";
+              alert(alert_string);
+            }
           },
           error => {
             console.log("Error", error);
           }
         );  
     }
+}
+
+interface Note {
+  title: string,
+  context: string,
+  token: string,
+  hashcode: string
 }
