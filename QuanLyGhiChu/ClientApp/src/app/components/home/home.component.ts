@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   http: Http;
   router: Router;
-  noteURL: string;
+  noteUrl: string;
   textareaValue: string = "";
 
 
@@ -25,22 +25,22 @@ export class HomeComponent {
     if (f.controls['title'].value === "") {
       f.controls['title'].setValue("Ghi chú 1");
     }
-  this.http.post("/api/ghichu/create", f.value)
+    this.http.post("/api/ghichu/create", f.value)
       .subscribe(
         data => {
           if (data.status === 200) {
             console.log(data.text());
-            this.noteURL = document.getElementsByTagName('base')[0].href + data.json()['code'];
-            let alert_string = "Tiêu đề ghi chú: " + f.controls["title"].value
+            this.noteUrl = document.getElementsByTagName('base')[0].href + data.json()['code'];
+            let alertString = "Tiêu đề ghi chú: " + f.controls["title"].value
               + "\nID ghi chú: " + data.json()['code']
               + "\nHãy vào đường dẫn chứa ID để chỉnh sửa ghi chú";
-            alert(alert_string);
+            alert(alertString);
           }
         },
         error => {
           console.log("Error", error);
         }
-      );  
+      );
   }
 }
 
@@ -48,5 +48,5 @@ interface Note {
   title: string,
   context: string,
   token: string,
-  hashcode: string
+  hashcode: string,
 }
