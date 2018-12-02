@@ -22,7 +22,9 @@ export class HomeComponent {
   }
 
   public postCreateNote(f: NgForm) {
-    
+    if (f.controls['title'].value === "") {
+      f.controls['title'].setValue("Ghi chú 1");
+    }
   this.http.post("/api/ghichu/create", f.value)
       .subscribe(
         data => {

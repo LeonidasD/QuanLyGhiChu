@@ -4,15 +4,15 @@
 <div class="row">
     <h1>Welcome to Noter - Free notepad</h1>
     <form #noteForm="ngForm" (ngSubmit)="postCreateNote(noteForm)" class="form-group">
+
         <div class="note-title form-group">
             <h3><label for="note-title-ip">Tiêu đề ghi chú</label></h3>
-            <input #title="ngModel" ngModel type="text" class="note-title-ip" id="note-title-ip" name="title" placeholder="Note Title"/>
-            <div *ngIf="(title.dirty || title.touched)">
-              <div *ngIf="title !== ''" class="alert alert-warning">
-                Tiêu đề sẽ được đặt mặc định Ghi chú 1
-              </div>
+            <input #title="ngModel" ngModel type="text" class="note-title-ip" id="note-title-ip" name="title" placeholder="Nhập tiêu đề"/>
+            <div *ngIf="title !== ''" class="alert alert-warning">
+              Tiêu đề sẽ được đặt mặc định Ghi chú 1
             </div>
         </div>
+
         <div class="note-content form-group">
           <h3><label for="note-content-ip">Nội dung ghi chú</label></h3>
           <br />
@@ -24,6 +24,11 @@
             </div>
           </div>
         </div>
+
+         <div class="note-password form-group">
+           <h3><label for="note-password-ip">Mật khẩu</label></h3>
+           <input #password="ngModel" ngModel type="password" class="note-password-ip" id="note-password-ip" name="password" placeholder="Nhập mật khẩu" />
+         </div>
         <button class="btn btn-default btn-primary" type="submit">Tạo</button>
     </form>
 </div>
