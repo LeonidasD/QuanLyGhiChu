@@ -1,0 +1,17 @@
+﻿<div class="row">
+    <h1>Welcome to Noter - Free notepad</h1>
+    <form #noteForm="ngForm" (ngSubmit)="postCreateNote(noteForm)" class="form-group">
+        <div class="note-title form-group">
+            <h3><label for="note-title-ip">Title</label></h3>
+            <input #title="ngModel" ngModel type="text" class="note-title-ip" id="note-title-ip" name="title" placeholder="Note Title" />
+        </div>
+        <div class="note-content form-group">
+            <h3><label for="note-content-ip">Your Content Here</label></h3>
+            <br />
+            <textarea #context="ngModel" ngModel id="note-content-ip" name="context">
+                
+            </textarea>
+        </div>
+        <button class="btn btn-default btn-primary" type="submit">Tạo</button>
+    </form>
+</div>
