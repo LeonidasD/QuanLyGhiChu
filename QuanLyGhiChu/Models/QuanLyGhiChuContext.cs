@@ -39,7 +39,7 @@ namespace QuanLyGhiChu.Models
 
                 entity.Property(e => e.HienAn).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Password).HasMaxLength(30);
+                entity.Property(e => e.Password).HasMaxLength(50);
 
                 entity.Property(e => e.TimeCreated).HasColumnType("datetime");
 

@@ -16,12 +16,7 @@ export class HomeComponent {
     }
 
     public postCreateNote(f: NgForm) {
-      this.httpClient.post("/api/ghichu/create",
-        {
-          "name": "Customer004",
-          "email": "customer004@email.com",
-          "tel": "0000252525"
-        })
+      this.httpClient.post("/api/ghichu/create", f.value)
         .subscribe(
           data => {
             console.log("POST Request is successful ", data);
