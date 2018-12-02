@@ -16,7 +16,7 @@ export class HomeComponent {
     }
 
     public postCreateNote(f: NgForm) {
-      this.httpClient.post("http://127.0.0.1:3000/customers",
+      this.httpClient.post("/api/ghichu/create",
         {
           "name": "Customer004",
           "email": "customer004@email.com",
