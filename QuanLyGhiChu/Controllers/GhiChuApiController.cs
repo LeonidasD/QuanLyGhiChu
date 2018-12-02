@@ -83,7 +83,7 @@ namespace QuanLyGhiChu.Controllers
                 Token = token,
                 Title = gc.Title,
                 Context = gc.Context,
-                Password = Md5Hash(gc.Password),
+                Password = Md5Hash(gc.Password == null ? null : gc.Password),
                 TimeCreated = dt,
                 TimeUpdated = null,
                 HienAn = 1

@@ -6,14 +6,23 @@
     <form #noteForm="ngForm" (ngSubmit)="postCreateNote(noteForm)" class="form-group">
         <div class="note-title form-group">
             <h3><label for="note-title-ip">Tiêu đề ghi chú</label></h3>
-            <input #title="ngModel" ngModel type="text" class="note-title-ip" id="note-title-ip" name="title" placeholder="Note Title" />
+            <input #title="ngModel" ngModel type="text" class="note-title-ip" id="note-title-ip" name="title" placeholder="Note Title"/>
+            <div *ngIf="(title.dirty || title.touched)">
+              <div *ngIf="title !== ''" class="alert alert-warning">
+                Tiêu đề sẽ được đặt mặc định Ghi chú 1
+              </div>
+            </div>
         </div>
         <div class="note-content form-group">
-            <h3><label for="note-content-ip">Nội dung ghi chú</label></h3>
-            <br />
-            <textarea #context="ngModel" ngModel id="note-content-ip" name="context">
-                
+          <h3><label for="note-content-ip">Nội dung ghi chú</label></h3>
+          <br />
+          <textarea #context="ngModel" ngModel id="note-content-ip" name="context" required>
             </textarea>
+          <div *ngIf="(context.dirty || context.touched)">
+            <div *ngIf="context !== ''" class="alert alert-danger">
+              Nội dung không được để trống
+            </div>
+          </div>
         </div>
         <button class="btn btn-default btn-primary" type="submit">Tạo</button>
     </form>
